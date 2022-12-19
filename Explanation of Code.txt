@@ -1,0 +1,41 @@
+The code for the drunks task for assignment 2 works as intended. The programme runs through the following steps:
+- The environment is read in,
+- A numpy array is used to find out the positions of the pub (i.e. where the .PLAN file equals 1),
+- This is converted into a list,
+- This list is then converted into a list of rows (i.e. x-values), and columns (i.e. y-values),
+- 25 'drunks' are coded into the environment, randomly being assigned an x-value and a y-value, and given access to interact with it,
+- The 'drunks' are randomly assignment a number of 'pints' between 1 and 10,
+- The 'drunks' loops through 'move', 'path' and '__str__' functions in that order,
+- The 'move' function comprises an if else statement:
+	- If the 'drunks' are not at their house (i.e. environment value does not equal (i+1)*10) they move randomly in the x and y directions,
+	- The more drunk a 'drunk' is the slower they move:
+		- If a 'drunk' has 6-10 pints they move 5 positive or negative spaces in the x and y directions,
+		- If a 'drunk' has 1-5 pints they move 10 positive or negative spaces in the x and y directions.
+	- If the 'drunks' are at their house (i.e. environment value equals (i+1)*10), they stop moving,
+	- When a 'drunk' is home "Drunk [number] is home" is printed.
+- The 'path' function minuses 10 from the value of the environment at each coordinate a 'drunk' walks on, each time a 'drunk' walks on it, leaving a path,
+- The '__str__' functions prints the coordinates and 'pints' of each 'drunk' after each iteration.
+- An animated 300 x 300 plot is used to display the envinroment and the 'drunks' looping through the 'move', 'path' and '__str__' functions,
+- A GUI is used to give functionality to the programme, providing "Model" and "Run Model" buttons when the code is ran,
+- A stopping condition is used as the frame number, which works as follows:
+	- When a 'drunk' gets home their number of 'pints' defaults to zero,
+	- Each time this happens, 1 is added to a counter,
+	- When the counter equals 25 (or generally the number of drunks coded in), the programme stops.
+- An updated text file of the environment is created. 
+
+- Some issues were encountered when coding:
+	- I struggled coding the locations of where the pub is (i.e. where the environment equals 1). 
+		- At first I used to the enumerate function, which returned the correct rows only, and then could not extract the correct columns from these.
+		- After this I found the numpy array function which solved the problem.
+	- I also struggled with getting the 'drunks' to stop at their homes.
+		- A seperate 'stop' function would not work (using the same code as the stopping part within the 'move' function),
+		- However once I integrated this code into the 'move' function it ran perfectly.
+	- Finally I struggled with the stopping condition.
+		- I appreciate there is probably a neater way to write this, however I adapted the stopping condition from assignment 1 to effectively make 'a' obsolete,
+		- Therefore the only way the programme stops is if all the drunks return home.
+
+- I did not code the drunks to not step on the same point twice, however if I did I would have used the following logic:
+	- Append each position each 'drunk' stepped on to 'drunk' specific lists,
+	- If that combination of x and y values existed in the list of a given 'drunk', that 'drunk' would move randomly +-1 in the x and y directions,
+	- This would avoid a drunk becoming stuck (i.e. all 4 possible points around them were in the list and therefore could not be moved to, therefore making the drunk unable to move at all).
+	- (I attempted this briefly but could not get it to work, however this more time I believe this would run as intended).  
